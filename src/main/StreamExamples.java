@@ -31,18 +31,20 @@ public class StreamExamples {
 //        stringStreams.forEach( a -> System.out.println(a));
 
 //        EXAMPLE 3
-//        Stream<String> stream4 = Stream.of("Paris", "Venice","Berlin", "London","Vienna", "Helsinki");
-        List<String> stream4 = List.of("paris", "venice","berlin", "london","vienna", "helsinki");
+        Stream<String> stream4 = Stream.of("Paris", "Venice","Berlin", "London","Vienna", "Helsinki");
+//            List<String> stream4 = List.of("paris", "venice","berlin", "london","vienna", "helsinki");
 
         // ne sortira
 //        Stream<String> stream4sorted = stream4.stream().sorted((s1,s2) -> s1.length() - s2.length());
 
 //        ??? ne sortira
-//        Stream<String> stream4sorted = stream4.stream().sorted(Comparator.comparingInt(String::length));
+//        Stream<String> stream4sorted = stream4.sorted(Comparator.comparingInt(String::length));
 
         // sortira,
-        List<String> listString = stream4.stream().sorted().collect(Collectors.toList());
+//        List<String> listString = stream4.stream().sorted().collect(Collectors.toList());
+        List<String> listString = stream4.sorted().collect(Collectors.toList());
 
+//        printStream(stream4sorted);
         printList(listString);
 
 
