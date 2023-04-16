@@ -21,12 +21,13 @@ public class Main {
 
         StreamProcessor streamsProc = new StreamProcessor();
 
-//        check list of sales
+        /*check list of sales*/
 //        for (Sale obj : salesList) {
 //            System.out.println(obj.getSalesPerson());
 //        }
 
-        streamsProc.getSalesByRegion(salesList, "region3");
+
+       streamsProc.getSalesByRegion(salesList, "region3");
 
        double totalSaleAmount = streamsProc.getTotalSales(salesList);
        System.out.println("Total sale amount: " +  decimalFormat.format(totalSaleAmount) + " EUR");

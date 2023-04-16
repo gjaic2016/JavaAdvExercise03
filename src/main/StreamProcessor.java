@@ -22,16 +22,15 @@ public class StreamProcessor {
         }
     }
 
+    /*lambda example*/
     public void getTopSalesPeople(List<Sale> sales, int numberOfPersons) {
-//        get new list cause original is unmodifiable
-//        List<Sale> newSortedSaleList = new ArrayList<>(sales);
 
-//        test print of list
-//        for (Sale s : sales) {
-//            System.out.println(s.getSalesPerson());
-//        }
+        /*get new list cause original is unmodifiable*/
+        List<Sale> newSortedSaleList = new ArrayList<>(sales);
 
-//        compare and collect to new list sorted properties
+        /*compare and collect to new list sorted properties,
+        * passed new modifiable list, and instance of new Comaprator object,
+        * declaring return of sorted list by paramtere*/
 //        Collections.sort(newSortedSaleList, new Comparator<Sale>() {
 //            @Override
 //            public int compare(Sale o1, Sale o2) {
@@ -39,25 +38,31 @@ public class StreamProcessor {
 //            }
 //        });
 
-//        lambda example of collections.sort
-//        Collections.sort(newSortedSaleList, (o1, o2) -> o2.getSaleAmount().compareTo(o1.getSaleAmount()));
+        /*lambda example of collections.sort*/
+        Collections.sort(newSortedSaleList, (o1, o2) -> o2.getSaleAmount().compareTo(o1.getSaleAmount()));
 
-//        stream example of sorting
-//        List<Sale> sortedSale = sales.stream().sorted(Comparator.comparing(Sale::getSaleAmount)).toList();
-//        stream example of sorting reversed
+        System.out.println("----------best sales over 600 EUR------");
+
+        /*printing lambda example results*/
+        for (int i = 0; i < numberOfPersons; i++) {
+            if (newSortedSaleList.get(i).getSaleAmount() > 500.00) {
+                System.out.println(newSortedSaleList.get(i).getSalesPerson() + ", " + newSortedSaleList.get(i).getSaleAmount() + " EUR");
+
+            }
+        }
+
+
+
+    }
+
+    /*Stream example*/
+    public void getTopSalesPeopleStream(List<Sale> sales, int numberOfPersons){
+
         List<Sale> sortedSale = sales.stream().sorted(Comparator.comparing(Sale::getSaleAmount).reversed()).toList();
 
         System.out.println("----------best sales over 600 EUR------");
 
-//        printing lambda example results
-//        for (int i = 0; i < numberOfPersons; i++) {
-//            if (newSortedSaleList.get(i).getSaleAmount() > 500.00) {
-//                System.out.println(newSortedSaleList.get(i).getSalesPerson() + ", " + newSortedSaleList.get(i).getSaleAmount() + " EUR");
-//
-//            }
-//        }
-
-//        printing stream example results
+        /*printing stream example results*/
         for (int i = 0; i < numberOfPersons; i++) {
             if (sortedSale.get(i).getSaleAmount() > 500.00) {
                 System.out.println(sortedSale.get(i).getSalesPerson() + ", " + sortedSale.get(i).getSaleAmount() + " EUR");
@@ -66,6 +71,7 @@ public class StreamProcessor {
         }
 
     }
+
 
     public double getAverageSale(List<Sale> sales) {
         OptionalDouble avg = sales.stream().mapToDouble(s -> s.getSaleAmount()).average();
